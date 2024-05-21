@@ -24,6 +24,7 @@ public class Conector {
 
 	}
 
+	
 	public void cerrarConexionBBDD() {
 		try {
 			con.close();
