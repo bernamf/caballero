@@ -1,8 +1,5 @@
 package modelo.dao;
 
-
-
-
 import conector.Conector;
 import modelo.bean.Caballero;
 
@@ -11,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CaballeroDAO {
     private Conector conector;
@@ -20,8 +16,8 @@ public class CaballeroDAO {
         conector = new Conector();
     }
 
-    public List<Caballero> getAllCaballeros() {
-        List<Caballero> caballeros = new ArrayList<>();
+    public ArrayList<Caballero> getAllCaballeros() {
+        ArrayList<Caballero> caballeros = new ArrayList<>();
         String query = "SELECT * FROM caballeros";
         
         try (Connection conn = conector.getCon();
@@ -34,8 +30,7 @@ public class CaballeroDAO {
                     rs.getString("nombre"),
                     rs.getInt("fuerza"),
                     rs.getInt("experiencia"),
-                    rs.getString("foto")
-                );
+                    rs.getString("foto"));
                 caballeros.add(caballero);
             }
         } catch (SQLException e) {

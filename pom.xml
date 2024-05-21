@@ -4,6 +4,7 @@
   <artifactId>Caballero</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
   <dependencyManagement>
     <dependencies>
         <dependency>
@@ -14,7 +15,24 @@
             <scope>import</scope>
         </dependency>
     </dependencies>
-</dependencyManagement>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- JSTL dependency -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <!-- Servlet API dependency -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
       <plugin>

@@ -35,7 +35,7 @@ public class CaballeroServlet extends HttpServlet {
 		CaballeroDAO caballeroDAO = new CaballeroDAO();
 		 ArrayList<Caballero> caballeros = (ArrayList<Caballero>) caballeroDAO.getAllCaballeros();
 	        request.setAttribute("caballeros", caballeros);
-	        request.getRequestDispatcher("/verCaballeros.jsp").forward(request, response);
+	        request.getRequestDispatcher("verCaballeros.jsp").forward(request, response);
 	}
 
 	/**
