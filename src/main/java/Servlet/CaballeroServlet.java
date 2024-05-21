@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.bean.Caballero;
+import modelo.dao.CaballeroDAO;
 
 /**
  * Servlet implementation class CaballeroServlet
@@ -31,8 +32,8 @@ public class CaballeroServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		 ArrayList<Caballero> caballeros = caballeroDAO.getAllCaballeros();
+		CaballeroDAO caballeroDAO = new CaballeroDAO();
+		 ArrayList<Caballero> caballeros = (ArrayList<Caballero>) caballeroDAO.getAllCaballeros();
 	        request.setAttribute("caballeros", caballeros);
 	        request.getRequestDispatcher("/verCaballeros.jsp").forward(request, response);
 	}
