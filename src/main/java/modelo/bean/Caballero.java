@@ -5,17 +5,15 @@ public class Caballero {
     private String nombre;
     private int fuerza;
     private int experiencia;
-    private String foto;
     private Arma arma;
     private Escudo escudo;
 
     // Constructor
-    public Caballero(int id, String nombre, int fuerza, int experiencia, String foto, Arma arma, Escudo escudo) {
+    public Caballero(int id, String nombre, int fuerza, int experiencia, Arma arma, Escudo escudo) {
         this.id = id;
         this.nombre = nombre;
         this.fuerza = fuerza;
         this.experiencia = experiencia;
-        this.foto = foto;
         this.arma = arma;
         this.escudo = escudo;
     }
@@ -51,14 +49,6 @@ public class Caballero {
 
     public void setExperiencia(int experiencia) {
         this.experiencia = experiencia;
-    }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
     }
 
     public Arma getArma() {

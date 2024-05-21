@@ -27,15 +27,17 @@ public class CaballeroDAO {
              ResultSet rs = stmt.executeQuery()) {
             
             while (rs.next()) {
-                Caballero caballero = new Caballero(
-                    rs.getInt("id"),
-                    rs.getString("nombre"),
-                    rs.getInt("fuerza"),
-                    rs.getInt("experiencia"),
-                    rs.getString("foto"),
-                    null,
-                    null
-                );
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                int fuerza = rs.getInt("fuerza");
+                int experiencia = rs.getInt("experiencia");
+                int armaId = rs.getInt("arma_id");
+                int escudoId = rs.getInt("escudo_id");
+                
+                Arma arma = getArmaById(armaId);
+                Escudo escudo = getEscudoById(escudoId);
+
+                Caballero caballero = new Caballero(id, nombre, fuerza, experiencia, arma, escudo);
                 caballeros.add(caballero);
             }
         } catch (SQLException e) {
@@ -95,13 +97,6 @@ public class CaballeroDAO {
     }
 
     public ArrayList<Caballero> getAllCaballerosConArmaYEscudo() {
-        ArrayList<Caballero> caballeros = getAllCaballeros();
-        
-        for (Caballero caballero : caballeros) {
-            caballero.setArma(getArmaById(caballero.getId()));
-            caballero.setEscudo(getEscudoById(caballero.getId()));
-        }
-        
-        return caballeros;
+        return getAllCaballeros();
     }
 }
