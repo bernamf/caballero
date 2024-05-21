@@ -1,21 +1,23 @@
 package modelo.bean;
 
-
-
 public class Caballero {
     private int id;
     private String nombre;
     private int fuerza;
     private int experiencia;
     private String foto;
+    private Arma arma;
+    private Escudo escudo;
 
     // Constructor
-    public Caballero(int id, String nombre, int fuerza, int experiencia, String foto) {
+    public Caballero(int id, String nombre, int fuerza, int experiencia, String foto, Arma arma, Escudo escudo) {
         this.id = id;
         this.nombre = nombre;
         this.fuerza = fuerza;
         this.experiencia = experiencia;
         this.foto = foto;
+        this.arma = arma;
+        this.escudo = escudo;
     }
 
     // Getters y Setters
@@ -57,5 +59,21 @@ public class Caballero {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public Arma getArma() {
+        return arma;
+    }
+
+    public void setArma(Arma arma) {
+        this.arma = arma;
+    }
+
+    public Escudo getEscudo() {
+        return escudo;
+    }
+
+    public void setEscudo(Escudo escudo) {
+        this.escudo = escudo;
     }
 }

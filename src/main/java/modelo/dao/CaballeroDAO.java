@@ -1,7 +1,9 @@
 package modelo.dao;
 
 import conector.Conector;
+import modelo.bean.Arma;
 import modelo.bean.Caballero;
+import modelo.bean.Escudo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,13 +32,74 @@ public class CaballeroDAO {
                     rs.getString("nombre"),
                     rs.getInt("fuerza"),
                     rs.getInt("experiencia"),
-                    rs.getString("foto"));
+                    rs.getString("foto"),
+                    null,
+                    null
+                );
                 caballeros.add(caballero);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             conector.cerrarConexionBBDD();
+        }
+        
+        return caballeros;
+    }
+
+    public Arma getArmaById(int armaId) {
+        Arma arma = null;
+        String query = "SELECT * FROM armas WHERE id = ?";
+        
+        try (Connection conn = conector.getCon();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, armaId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    arma = new Arma(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getInt("capacidad_danio"),
+                        rs.getString("foto")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return arma;
+    }
+
+    public Escudo getEscudoById(int escudoId) {
+        Escudo escudo = null;
+        String query = "SELECT * FROM escudos WHERE id = ?";
+        
+        try (Connection conn = conector.getCon();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, escudoId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    escudo = new Escudo(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getInt("capacidad_defensa")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return escudo;
+    }
+
+    public ArrayList<Caballero> getAllCaballerosConArmaYEscudo() {
+        ArrayList<Caballero> caballeros = getAllCaballeros();
+        
+        for (Caballero caballero : caballeros) {
+            caballero.setArma(getArmaById(caballero.getId()));
+            caballero.setEscudo(getEscudoById(caballero.getId()));
         }
         
         return caballeros;

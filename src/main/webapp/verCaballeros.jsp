@@ -19,7 +19,9 @@
                     <th>Nombre</th>
                     <th>Fuerza</th>
                     <th>Experiencia</th>
-                    
+                    <th>Foto</th>
+                    <th>Arma</th>
+                    <th>Escudo</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +31,18 @@
                         <td>${caballero.nombre}</td>
                         <td>${caballero.fuerza}</td>
                         <td>${caballero.experiencia}</td>
-                        
+                        <td>
+                            <c:choose>
+                                <c:when test="${caballero.foto == null}">
+                                    No disponible
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="${caballero.foto}" alt="Foto de ${caballero.nombre}" class="img-fluid" width="100"/>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td>${caballero.arma.nombre}</td>
+                        <td>${caballero.escudo.nombre}</td>
                     </tr>
                 </c:forEach>
             </tbody>
